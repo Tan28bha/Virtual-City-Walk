@@ -5,8 +5,9 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Fix Leaflet icons
-delete (L.Icon.Default.prototype as unknown as { _getIconUrl: unknown })._getIconUrl;
+const IconProto = L.Icon.Default.prototype as unknown as { _getIconUrl?: () => void };
+delete IconProto._getIconUrl;
+
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
