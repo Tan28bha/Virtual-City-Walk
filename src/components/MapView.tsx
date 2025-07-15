@@ -3,15 +3,17 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import "leaflet/dist/leaflet.css";
+import { Icon } from "leaflet";
+import L from "leaflet";
 
 const IconProto = L.Icon.Default.prototype as unknown as { _getIconUrl?: () => void };
 delete IconProto._getIconUrl;
 
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
-//   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
-//   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
-// });
+Icon.Default.mergeOptions({
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
+});
 
 export default function MapView() {
   const { location, error } = useGeoLocation();
